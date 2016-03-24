@@ -1,6 +1,8 @@
+$fg-color: #efefef;
+
 body {
   background: rgb(22, 22, 22);
-  color: #efefef;
+  color: $fg-color;
 }
 
 button, input {
@@ -10,9 +12,30 @@ button, input {
 #resistance {
   padding: 20px;
   text-align: center;
-}
-
-.resistance input {
-  font-size: 2em;
-  text-align: center;
+  
+  .input-infos {
+    font-size: 150%;
+  
+    .input-box {
+  
+      input {
+        text-align: right;
+        border: none;
+        background-color: transparent;
+        color: $fg-color;
+        padding-right: 40px;
+        border: solid 1px #999999;
+      }
+      
+      span.ohm {
+        margin-left: -40px;
+      }
+    }
+  }
+  
+  svg {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
 }
