@@ -1,8 +1,14 @@
 $fg-color: #efefef;
+$bg-color: rgb(22, 22, 22);
 
 body {
-  background: rgb(22, 22, 22);
+  background: $bg-color;
   color: $fg-color;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  font-weight: 800;
 }
 
 button, input {
@@ -37,5 +43,9 @@ button, input {
     width: 100%;
     height: auto;
     max-height: 100%;
+  }
+  
+  .modal-content {
+    background-color: lighten($bg-color, 5%);
   }
 }

@@ -1,10 +1,26 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { store, setBandCount, setTolerance } from "./store.js";
+import { colors, toleranceColors } from "./colors.js";
+import ColorchooserDialog from "./colorchooser-dialog.jsx";
+const jQuery = require("jquery");
 
-const colors = ["#000000", "#8a3d06", "#c40808", "#f86623", "#e5d317", "#36b71a", "#1a53b7", "#9a1ab7", "#767676", "#fafafa"];
-const toleranceColors = ["#8a3d06", "#c40808", "#ad9f4e", "#969696"];
+class ResistanceBase extends React.Component {
+  bandClicked(e) {
+    let container = document.getElementById("modal-container");
+    ReactDOM.render(<ColorchooserDialog band={ e } colors={ colors }/>, container);
+    
+    let m = jQuery("#modal-container .modal");
+    
+    m.on('hidden.bs.modal', function (e) {
+      ReactDOM.unmountComponentAtNode(document.getElementById("modal-container"));
+    });
+    
+    m.modal("show");
+  }
+}
 
-class Resistance4 extends React.Component {
+class Resistance4 extends ResistanceBase {
   render() {
     return <svg
        id="svg4203"
@@ -124,13 +140,45 @@ class Resistance4 extends React.Component {
              height="0.74879998"
              x="22.018999"
              y="0.78336" />
+          <rect
+             style={{ opacity:0 }}
+             width="2.2995915"
+             id="band_0_clicker"
+             height="7.1316495"
+             x="8.5877056"
+             y="0.052814484"
+             onClick={ this.bandClicked.bind(this, 0) } />
+          <rect
+             style={{ opacity:0 }}
+             width="2.2995915"
+             id="band_2_clicker"
+             height="6.3602672"
+             x="12.226302"
+             y="0.46033734"
+             onClick={ this.bandClicked.bind(this, 1) } />
+          <rect
+             style={{ opacity:0 }}
+             width="2.2995915"
+             id="band_3_clicker"
+             height="6.3602672"
+             x="15.894008"
+             y="0.46033734"
+             onClick={ this.bandClicked.bind(this, 3) } />
+          <rect
+             style={{ opacity:0 }}
+             width="1.3826661"
+             id="band_5_clicker"
+             height="7.0152144"
+             x="21.657545"
+             y="0.096477658"
+             onClick={ this.bandClicked.bind(this, 4) } />
         </g>
       </g>
     </svg>
   }
 }
 
-class Resistance5 extends React.Component {
+class Resistance5 extends ResistanceBase {
   render() {
     return <svg
        id="svg4203"
@@ -231,7 +279,8 @@ class Resistance5 extends React.Component {
                id="ShadowExtra-3"
                x="22.4258"
                y="3.2899699"
-               width="0.70299298" />
+               width="0.70299298"
+               style={{ opacity: 0.25 }} />
             <path
                style={{ fill: "#ffffff" }}
                id="ReflexRight-9"
@@ -256,6 +305,46 @@ class Resistance5 extends React.Component {
                x="22.4258"
                y="0.58999401"
                width="0.70299298" />
+            <rect
+               style={{ opacity:0 }}
+               width="2.2995915"
+               id="band_0_clicker"
+               height="7.1316495"
+               x="8.9877056"
+               y="-0.252814484"
+               onClick={ this.bandClicked.bind(this, 0) } />
+            <rect
+               style={{ opacity:0 }}
+               width="2.2995915"
+               id="band_2_clicker"
+               height="6.0602672"
+               x="11.9"
+               y="0.25"
+               onClick={ this.bandClicked.bind(this, 1) } />
+            <rect
+               style={{ opacity:0 }}
+               width="2.2995915"
+               id="band_3_clicker"
+               height="6.3602672"
+               x="14.9"
+               y="0.25"
+               onClick={ this.bandClicked.bind(this, 2) } />
+            <rect
+               style={{ opacity:0 }}
+               width="2.2995915"
+               id="band_4_clicker"
+               height="6.3602672"
+               x="17.8"
+               y="0.25"
+               onClick={ this.bandClicked.bind(this, 3) } />
+            <rect
+               style={{ opacity:0 }}
+               width="1.3826661"
+               id="band_5_clicker"
+               height="7.2"
+               x="22.1"
+               y="-0.2"
+               onClick={ this.bandClicked.bind(this, 4) } />
           </g>
         </g>
       </g>
@@ -306,7 +395,7 @@ export default class Resistance extends React.Component {
         <div className="row">
           <div className="col-md-6">
             <div className="btn-group" role="group">
-              <button type="button" className="btn btn-default" onClick={setBandCount.bind(this, 4)}>4 bandes</button>
+              <button type="button" className="btn btn-default" onClick={setBandCount.bind(this, 4)}>4</button>
               <button type="button" className="btn btn-default" onClick={setBandCount.bind(this, 5)}>5 bandes</button>
             </div>
           </div>
@@ -319,6 +408,7 @@ export default class Resistance extends React.Component {
             </div>
           </div>
         </div>
+        <div id="modal-container"></div>
       </div>
   }
 };

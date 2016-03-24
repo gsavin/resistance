@@ -48,6 +48,18 @@ const getBands = (v, bandCount = 4, bands = [0, 0, 0, 0, 2]) => {
   return bands;
 };
 
+const getValueFromBands = (bands, bandCount) => {
+  let v = bands[0] * 10 + bands[1];
+  
+  if (bandCount == 5) {
+    v = v * 10 + bands[2];
+  }
+  
+  v *= Math.pow(10, bands[3]);
+  
+  return v;
+};
+
 const defaultValue = 1000;
 const defaultBandCount = 4;
 
@@ -78,6 +90,17 @@ const resistor = (state = defaultState, action) => {
       bands: [state.bands[0], state.bands[1], state.bands[2], state.bands[3], action.tolerance],
       value: state.value,
       displayValue: state.displayValue
+    };
+  case "SET_BAND_VALUE":
+    let bands = [state.bands[0], state.bands[1], state.bands[2], state.bands[3], state.bands[4]];
+    bands[action.band] = action.value;
+    let value = getValueFromBands(bands, state.bandCount);
+    
+    return {
+      bandCount: state.bandCount,
+      bands: bands,
+      value: value,
+      displayValue: getDisplayValue(value)
     };
   case "VALUE_CHANGED":
     let r = /^(\d+(?:\.\d+)?)(K|k|M)?$/;
@@ -140,5 +163,13 @@ export const setTolerance = (tolerance) => {
   store.dispatch({
     type: "SET_TOLERANCE",
     tolerance: tolerance
+  });
+};
+
+export const setBandValue = (band, value) => {
+  store.dispatch({
+    type: "SET_BAND_VALUE",
+    band: band,
+    value: value
   });
 };
