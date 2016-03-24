@@ -164,14 +164,6 @@ class Resistance4 extends ResistanceBase {
              x="15.894008"
              y="0.46033734"
              onClick={ this.bandClicked.bind(this, 3) } />
-          <rect
-             style={{ opacity:0 }}
-             width="1.3826661"
-             id="band_5_clicker"
-             height="7.0152144"
-             x="21.657545"
-             y="0.096477658"
-             onClick={ this.bandClicked.bind(this, 4) } />
         </g>
       </g>
     </svg>
@@ -337,14 +329,6 @@ class Resistance5 extends ResistanceBase {
                x="17.8"
                y="0.25"
                onClick={ this.bandClicked.bind(this, 3) } />
-            <rect
-               style={{ opacity:0 }}
-               width="1.3826661"
-               id="band_5_clicker"
-               height="7.2"
-               x="22.1"
-               y="-0.2"
-               onClick={ this.bandClicked.bind(this, 4) } />
           </g>
         </g>
       </g>
@@ -400,11 +384,11 @@ export default class Resistance extends React.Component {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="btn-group">
-              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 0)}>&plusmn; 1%</button>
-              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 1)}>&plusmn; 2%</button>
-              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 2)}>&plusmn; 5%</button>
-              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 3)}>&plusmn; 10%</button>
+            <div className="btn-group tolerance-selector">
+              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 0)} style={{ backgroundColor: toleranceColors[0] }}>&plusmn; 1%</button>
+              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 1)} style={{ backgroundColor: toleranceColors[1] }}>&plusmn; 2%</button>
+              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 2)} style={{ backgroundColor: toleranceColors[2] }}>&plusmn; 5%</button>
+              <button type="button" className="btn btn-default" onClick={setTolerance.bind(this, 3)} style={{ backgroundColor: toleranceColors[3] }}>&plusmn; 10%</button>
             </div>
           </div>
         </div>

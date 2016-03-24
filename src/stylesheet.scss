@@ -48,4 +48,9 @@ button, input {
   .modal-content {
     background-color: lighten($bg-color, 5%);
   }
+  
+  .tolerance-selector button {
+    border-color: lighten($bg-color, 5%);
+    color: $fg-color;
+  }
 }
